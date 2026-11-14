@@ -87,13 +87,13 @@ max_date = all_df['dteday'].max().date()
 
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/2972/2972185.png", width=80)
-    st.title("🚲 Bike Sharing")
+    st.title("Bike Sharing")
     st.markdown("Dashboard Analisis Data Penyewaan Sepeda")
     st.write("---")
     
     # Filter Rentang Waktu
     date_range = st.date_input(
-        label="📅 Pilih Rentang Tanggal:",
+        label="Pilih Rentang Tanggal:",
         min_value=min_date,
         max_value=max_date,
         value=[min_date, max_date]
@@ -110,7 +110,7 @@ with st.sidebar:
     # Filter Musim
     available_seasons = all_df['season_label'].dropna().unique().tolist()
     selected_seasons = st.multiselect(
-        label="🍂 Pilih Musim:",
+        label="Pilih Musim:",
         options=available_seasons,
         default=available_seasons
     )
@@ -118,7 +118,7 @@ with st.sidebar:
     # Filter Cuaca
     available_weathers = all_df['weather_label'].dropna().unique().tolist()
     selected_weathers = st.multiselect(
-        label="⛅ Pilih Kondisi Cuaca:",
+        label="Pilih Kondisi Cuaca:",
         options=available_weathers,
         default=available_weathers
     )
@@ -138,7 +138,7 @@ filtered_df = all_df[
 ]
 
 if filtered_df.empty:
-    st.warning("⚠️ Tidak ada data yang sesuai dengan kombinasi filter yang dipilih. Silakan sesuaikan kembali filter Anda.")
+    st.warning("Tidak ada data yang sesuai dengan kombinasi filter yang dipilih. Silakan sesuaikan kembali filter Anda.")
     st.stop()
 
 # Menyiapkan data agregasi melalui fungsi helper
@@ -151,7 +151,7 @@ time_segment_df = create_time_segment_df(filtered_df)
 # ==========================================
 # HEADER UTAMA
 # ==========================================
-st.title("🚲 Dashboard Analisis Data Penyewaan Sepeda")
+st.title("Dashboard Analisis Data Penyewaan Sepeda")
 st.markdown("""
 Selamat datang di **Bike Sharing Analytics Dashboard**. Dashboard ini menampilkan visualisasi interaktif 
 terkait performa penyewaan sepeda harian, pengaruh kondisi cuaca dan musim, serta karakteristik jam sibuk komuter.
@@ -196,7 +196,7 @@ st.write("---")
 # ==========================================
 # VISUALISASI 1: TREN PENYEWAAN HARIAN
 # ==========================================
-st.subheader("📈 Tren Penyewaan Sepeda Harian")
+st.subheader("Tren Penyewaan Sepeda Harian")
 
 fig, ax = plt.subplots(figsize=(15, 5))
 ax.plot(
@@ -232,7 +232,7 @@ ax.legend(loc='upper left', fontsize=10)
 ax.grid(True, linestyle='--', alpha=0.6)
 st.pyplot(fig)
 
-with st.expander("💡 Insight Tren Harian"):
+with st.expander("Insight Tren Harian"):
     st.markdown("""
     - Terlihat pola musiman yang kuat dan tren peningkatan volume penyewaan yang signifikan dari tahun 2011 ke 2012.
     - Pengguna terdaftar mendominasi volume penyewaan di sepanjang tahun, sementara pengguna kasual mengalami lonjakan saat cuaca hangat dan akhir pekan.
@@ -243,7 +243,7 @@ st.write("---")
 # ==========================================
 # VISUALISASI 2: PENGARUH CUACA & MUSIM (PERTANYAAN 1)
 # ==========================================
-st.subheader("⛅ Dampak Kondisi Cuaca dan Musim terhadap Penyewaan")
+st.subheader("Dampak Kondisi Cuaca dan Musim terhadap Penyewaan")
 
 col_left, col_right = st.columns(2)
 
@@ -294,7 +294,7 @@ with col_right:
                       ha='center', va='bottom', fontsize=9, fontweight='bold')
     st.pyplot(fig_s)
 
-with st.expander("💡 Insight Analisis Cuaca & Musim"):
+with st.expander("Insight Analisis Cuaca & Musim"):
     st.markdown("""
     - **Cuaca:** Kondisi cuaca cerah (*Clear/Partly Cloudy*) memberikan tingkat penyewaan tertinggi. Cuaca buruk (*Light Snow/Rain*) menurunkan penyewaan secara drastis hingga lebih dari 60%.
     - **Musim:** Musim gugur (*Fall*) dan musim panas (*Summer*) mencatatkan utilisasi tertinggi, sedangkan musim semi (*Spring*) memiliki tingkat penyewaan paling rendah.
@@ -305,7 +305,7 @@ st.write("---")
 # ==========================================
 # VISUALISASI 3: POLA JAM SIBUK HARI KERJA VS AKHIR PEKAN (PERTANYAAN 2)
 # ==========================================
-st.subheader("⏰ Pola Jam Sibuk: Hari Kerja vs Hari Libur/Akhir Pekan")
+st.subheader("Pola Jam Sibuk: Hari Kerja vs Hari Libur/Akhir Pekan")
 
 fig_h, ax_h = plt.subplots(figsize=(15, 5.5))
 
@@ -335,7 +335,7 @@ ax_h.legend(title='Kategori Hari', fontsize=10, title_fontsize=11, loc='upper le
 
 st.pyplot(fig_h)
 
-with st.expander("💡 Insight Pola Jam Sibuk"):
+with st.expander("Insight Pola Jam Sibuk"):
     st.markdown("""
     - **Hari Kerja (*Working Day*):** Menampilkan dua puncak (*bimodal peak*) pada jam komuter berangkat kerja/sekolah (**08:00**) dan pulang (**17:00–18:00**).
     - **Akhir Pekan/Libur (*Weekend/Holiday*):** Menampilkan kurva tunggal (*unimodal*) dengan puncak di siang hari (**12:00–15:00**), mencerminkan aktivitas rekreasi santai.
@@ -346,7 +346,7 @@ st.write("---")
 # ==========================================
 # VISUALISASI 4: ANALISIS LANJUTAN (TIME-OF-DAY SEGMENTATION)
 # ==========================================
-st.subheader("👥 Analisis Lanjutan: Segmentasi Waktu & Komposisi Pengguna")
+st.subheader("Analisis Lanjutan: Segmentasi Waktu & Komposisi Pengguna")
 
 time_order = ['Early Morning (00-05)', 'Morning Rush (06-09)', 'Midday (10-15)', 'Evening Rush (16-19)', 'Night (20-23)']
 time_plot_df = time_segment_df.set_index('time_category').reindex(

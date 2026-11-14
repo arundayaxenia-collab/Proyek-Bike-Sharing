@@ -1,1 +1,1 @@
-https://bike-sharing-dashboard-dicoding.streamlit.app/
+https://proyek-bike-sharing.streamlit.app/
