@@ -10,7 +10,6 @@ import seaborn as sns
 # ==========================================
 st.set_page_config(
     page_title="Bike Sharing Dashboard",
-    page_icon="🚲",
     layout="wide"
 )
 
@@ -155,8 +154,7 @@ min_date = all_df['dteday'].min().date()
 max_date = all_df['dteday'].max().date()
 
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/2972/2972185.png", width=80)
-    st.title("🚲 Bike Sharing")
+    st.title("Bike Sharing")
     st.markdown("Dashboard Analisis Data Penyewaan Sepeda")
     st.write("---")
     
@@ -220,7 +218,7 @@ time_segment_df = create_time_segment_df(filtered_df)
 # ==========================================
 # HEADER UTAMA
 # ==========================================
-st.title("🚲 Dashboard Analisis Data Penyewaan Sepeda")
+st.title("Dashboard Analisis Data Penyewaan Sepeda")
 st.markdown("""
 Selamat datang di **Bike Sharing Analytics Dashboard**. Dashboard ini menampilkan visualisasi interaktif 
 terkait performa penyewaan sepeda harian, pengaruh kondisi cuaca dan musim, serta karakteristik jam sibuk komuter.
